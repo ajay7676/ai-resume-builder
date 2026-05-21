@@ -4,3 +4,24 @@
 *{
     font-family: "Outfit", sans-serif;
 }
+@layer base{
+  button{
+    @apply cursor-pointer
+  }
+}
+
+
+/* Start CSS  for Testimonial Section */
+ @keyframes marqueeScroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+  }
+
+  .marquee-inner {
+      animation: marqueeScroll 25s linear infinite;
+  }
+
+  .marquee-reverse {
+      animation-direction: reverse;
+  }
+/* End CSS  for Testimonial Section */
