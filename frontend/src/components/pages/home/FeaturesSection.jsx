@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LuZap } from "react-icons/lu";
 import Title from "./Title";
+import Logo from '../../../assets/logo.svg';
 
 
 const FeaturesSection = () => {
