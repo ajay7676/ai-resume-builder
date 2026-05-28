@@ -10,6 +10,7 @@ import { dummyResumeData } from "../../../assets/assets";
 import CreateresumeModal from "./modal/CreateresumeModal";
 import { useNavigate } from "react-router-dom";
 import UploadresumeModal from "./modal/UploadresumeModal";
+import UpdateResumeTitle from './modal/UpdateResumeTitle'
 
 const Dashboard = () => {
   const colors = ["#9333ea", "#d977706", "#dc2626", "#0284c7", "#16a34a"];
@@ -19,18 +20,22 @@ const Dashboard = () => {
   const [title, setTitle] = useState("");
   const [error, setError] = useState("");
 
+  const [isUpateResumeTitle, setIsUpateResumeTitle] = useState(false)
+   const [selectedResumeId, setSelectedResumeId] =
+    useState(null);
+
   const navigate = useNavigate();
 
   const loadAllResumes = async () => {
     setAllResumes(dummyResumeData);
   };
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (title.trim() === "") {
       setError("Please enter resume title");
       return;
     }
     setError("");
-    console.log(title);
     setIsCreateResume(false);
     setTitle("");
     navigate(`/app/builder/res1`);
@@ -73,6 +78,7 @@ const Dashboard = () => {
             return (
               <button
                 key={index}
+                onClick={() => navigate(`/app/builder/${resume._id}`)}
                 className="relative w-full sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 border group hover:shadow-lg transition-all duration-300 cursor-pointer"
                 style={{
                   background: `linear-gradient(135deg,${baseColor}10, ${baseColor}40`,
@@ -102,6 +108,12 @@ const Dashboard = () => {
                     style={{ color: baseColor }}
                   />
                   <FaPen
+                    onClick={() => {
+                       setSelectedResumeId(resume._id)
+                      setIsUpateResumeTitle(true);
+
+                    }}
+                   
                     className="size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors"
                     style={{ color: baseColor }}
                   />
@@ -141,6 +153,15 @@ const Dashboard = () => {
       >
 
       </UploadresumeModal>
+      <UpdateResumeTitle
+        isOpen={isUpateResumeTitle}
+        onClose={()=> setIsUpateResumeTitle(false)}
+        allResumes = {allResumes}
+        setAllResumes={setAllResumes}
+        resumeId={selectedResumeId}
+      >
+
+      </UpdateResumeTitle>
     </>
   );
 };

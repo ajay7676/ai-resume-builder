@@ -35,7 +35,6 @@ const UploadresumeModal = ({ isOpen, onClose, children }) => {
       title,
       file,
     };
-    console.log(resumeData);
 
     onClose();
     navigate(`/app/builder/res1`);
