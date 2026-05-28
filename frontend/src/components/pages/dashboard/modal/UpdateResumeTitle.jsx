@@ -1,12 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaXmark } from "react-icons/fa6";
 
 const UpdateResumeTitle = ({isOpen,onClose,resumeId,allResumes,setAllResumes}) => {
     const [title, setTitle] = useState("");
   const [error, setError] = useState("");
-   console.log(resumeId);
-   console.log(allResumes);
-  const handleSubmit = () => {
+
+  // Get Current Resume Data
+  useEffect(()=>{
+
+    const currentResume = allResumes.find((item) => item._id === resumeId);
+
+    if(currentResume){
+        setTitle(currentResume.title)
+    }
+
+
+  },[resumeId,allResumes])
+
+  
+   console.log(title)
+
+   // Update Resume title
+   const handleUpdateResumeTitle = () => {
+
+    if(title.trim() === ""){
+        setError("Please enter resume title");
+        return;
+    }
+
+
+    const updatedResumeList = allResumes.map((item) => {
+        if(item._id === resumeId){
+            return{
+                ...item,
+                title: title,
+            };
+        }
+        return item;
+    });
+
+    setAllResumes(updatedResumeList)
+      onClose();
 
   }
 
@@ -35,7 +69,7 @@ const UpdateResumeTitle = ({isOpen,onClose,resumeId,allResumes,setAllResumes}) =
           />
           {error && <p className="relative -mt-3 p-2 w-100 text-red-500">{error}</p>}
           <button
-            onClick={handleSubmit}
+            onClick={handleUpdateResumeTitle}
             className="w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
           >
             Update 
