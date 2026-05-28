@@ -11,6 +11,7 @@ import CreateresumeModal from "./modal/CreateresumeModal";
 import { useNavigate } from "react-router-dom";
 import UploadresumeModal from "./modal/UploadresumeModal";
 import UpdateResumeTitle from './modal/UpdateResumeTitle'
+import DeleteConfirmModal from "./modal/DeleteConfirmModal";
 
 const Dashboard = () => {
   const colors = ["#9333ea", "#d977706", "#dc2626", "#0284c7", "#16a34a"];
@@ -21,8 +22,8 @@ const Dashboard = () => {
   const [error, setError] = useState("");
 
   const [isUpateResumeTitle, setIsUpateResumeTitle] = useState(false)
-   const [selectedResumeId, setSelectedResumeId] =
-    useState(null);
+  const [selectedResumeId, setSelectedResumeId] =useState(null);
+  const[openDeleteModal, setOpenDeleteModal]=useState(false);
 
   const navigate = useNavigate();
 
@@ -104,6 +105,11 @@ const Dashboard = () => {
 
                 <div className="absolute top-1 right-1 group-hover:flex items-center hidden">
                   <FaTrashCan
+                     onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedResumeId(resume._id);
+                      setOpenDeleteModal(true);
+                    }}
                     className="size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors"
                     style={{ color: baseColor }}
                   />
@@ -163,6 +169,16 @@ const Dashboard = () => {
       >
 
       </UpdateResumeTitle>
+      <DeleteConfirmModal
+        isOpen={openDeleteModal}
+        onClose={() => setOpenDeleteModal(false)}
+        allResumes = {allResumes}
+        setAllResumes={setAllResumes}
+        resumeId={selectedResumeId}
+        selectedResumeId={selectedResumeId}
+      >
+
+      </DeleteConfirmModal>
     </>
   );
 };
