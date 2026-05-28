@@ -15,7 +15,7 @@ const Dashboard = () => {
   const colors = ["#9333ea", "#d977706", "#dc2626", "#0284c7", "#16a34a"];
   const [allResumes, setAllResumes] = useState([]);
   const [isCreateResume, setIsCreateResume] = useState(false);
-  const [isuploadResume, setIsuploadResume] = useState(false);
+  const [isuploadResume, setIsUploadResume] = useState(false);
   const [title, setTitle] = useState("");
   const [error, setError] = useState("");
 
@@ -57,6 +57,7 @@ const Dashboard = () => {
           </button>
           <button className=" w-full bg-white sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 text-slate-600 border border-dashed border-slate-300 group hover:border-indigo-500 hover:shadow-lg transition-all duration-300 cursor-pointer">
             <FaCloudArrowUp
+            onClick={() => setIsUploadResume(true)}
               size={14}
               className="lucide lucide-plus size-11 transition-all duration-300 p-2.5 bg-linear-to-br from-indigo-300 to-indigo-500  text-white rounded-full"
             />
@@ -95,7 +96,7 @@ const Dashboard = () => {
                   Updated on {new Date(resume.updatedAt).toLocaleDateString()}
                 </p>
 
-                <div className="absolute top-1 right-1 group-hover:flex items-center">
+                <div className="absolute top-1 right-1 group-hover:flex items-center hidden">
                   <FaTrashCan
                     className="size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors"
                     style={{ color: baseColor }}
@@ -134,7 +135,12 @@ const Dashboard = () => {
           </button>
         </div>
       </CreateresumeModal>
-    
+      <UploadresumeModal
+       isOpen={isuploadResume}
+       onClose={()=> setIsUploadResume(false)}
+      >
+
+      </UploadresumeModal>
     </>
   );
 };
