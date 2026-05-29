@@ -4,6 +4,7 @@ const initialState = {
     user: null,
     token: localStorage.getItem("resume-token") || null,
     loading: false,
+    error: null,
 };
 
 const authSlice = createSlice({
@@ -15,6 +16,9 @@ const authSlice = createSlice({
             state.user = action.payload.user;
             state.token = action.payload.token;
         },
+         setError: (state, action) => {
+            state.error = action.payload;
+        },
         logOut: (state) => {
             state.user = null;
             state.token = null;
@@ -23,6 +27,6 @@ const authSlice = createSlice({
     },
 })
 
-export const {setCredentails,logOut} = authSlice.actions;
+export const {setCredentails,setError,logOut} = authSlice.actions;
 
 export default authSlice.reducer;

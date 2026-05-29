@@ -1,23 +1,57 @@
 import React from "react";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa6";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCredentails,setError } from "../../../features/auth/authSlice";
 
 const Login = () => {
-
-
   const query = new URLSearchParams(window.location.search);
-  const urlState = query.get('query');
+  const urlState = query.get("query");
   const [state, setState] = React.useState(urlState || "login");
+  const navigate = useNavigate();
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
     password: "",
   });
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  };
+
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const url =
+        state === "login"
+          ? "http://localhost:5000/api/auth/login"
+          : "http://localhost:5000/api/auth/signup";
+
+      const response = await axios.post(url, formData);
+
+      console.log(response.data);
+
+      // Store Token in local Storage
+
+      localStorage.setItem("resume-token", response.data.token);
+      
+      // Store form Data in Redux
+      dispatch(
+        setCredentails({
+          user: response.data.user,
+          token: response.data.token,
+        }),
+      );
+
+      navigate("/app");
+    } catch (error) {
+      //  setError(error.response.data.message);
+      dispatch(setError(error.response.data.message));
+      console.log(error.response.data.message)
+    }
   };
 
   return (
@@ -35,20 +69,20 @@ const Login = () => {
           </p>
           {state !== "login" && (
             <div className="flex items-center mt-6 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
-              <FaUser size={12} className="text-gray-500"/>
+              <FaUser size={12} className="text-gray-500" />
               <input
-              type="name"
-              name="name"
-              placeholder="Name"
-              className="border-none outline-none ring-0"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
+                type="name"
+                name="name"
+                placeholder="Name"
+                className="border-none outline-none ring-0"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
             </div>
           )}
           <div className="flex items-center w-full mt-4 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
-             <FaEnvelope size={12} className="text-gray-500"/>
+            <FaEnvelope size={12} className="text-gray-500" />
             <input
               type="email"
               name="email"
@@ -60,7 +94,7 @@ const Login = () => {
             />
           </div>
           <div className="flex items-center mt-4 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
-              <FaLock size={12} className="text-gray-500"/>
+            <FaLock size={12} className="text-gray-500" />
             <input
               type="password"
               name="password"
