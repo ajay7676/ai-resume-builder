@@ -1,1 +1,0 @@
-mongodb+srv://ajaychauhanpp44_db_user:ElG4jW9cpStEy6oZ@ai-resume-builder.bpmynpg.mongodb.net/
