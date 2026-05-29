@@ -26,4 +26,6 @@ dist-ssr
 .env
 *.constants
 .constants
+*.url
+.url
 
