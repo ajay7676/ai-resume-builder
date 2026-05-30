@@ -5,7 +5,8 @@ const Navbar = () => {
   const user = {name: 'Ajay'}
    const navigate = useNavigate();
     const logoutUser = () =>{
-        navigate("/");
+      localStorage.removeItem("resume-token");
+        navigate("/login");
     }
   return (
     <div className='shadow bg-white'>

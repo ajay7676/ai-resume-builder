@@ -6,6 +6,7 @@ import Preview from "./components/pages/preview/Preview";
 import Login from "./components/pages/login/Login";
 import Navbar from "./components/elements/Navbar";
 import Layout from "./components/elements/Layout";
+import ProtectedRoute from "./route/ProtectedRoute";
 
 const App = () => {
   return (
@@ -13,7 +14,14 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="app" element={<Layout />}>
-          <Route index element={<Dashboard />} />
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
           <Route path="builder/:resumeId" element={<ResumeBuilder />} />
         </Route>
         <Route path="view/:resumeId" element={<Preview />} />

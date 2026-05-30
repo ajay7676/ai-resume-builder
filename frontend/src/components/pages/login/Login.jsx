@@ -32,7 +32,7 @@ const Login = () => {
 
       const response = await axios.post(url, formData);
 
-      console.log(response.data);
+      // console.log(response.data);
 
       // Store Token in local Storage
 
@@ -48,9 +48,7 @@ const Login = () => {
 
       navigate("/app");
     } catch (error) {
-      //  setError(error.response.data.message);
       dispatch(setError(error.response.data.message));
-      console.log(error.response.data.message)
     }
   };
 
