@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // Create Signup  API
-
 const signup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -55,7 +54,6 @@ const signup = async (req, res) => {
 };
 
 // Create Login API
-
 const login = async(req,res) =>{
 
     try {
@@ -112,3 +110,5 @@ module.exports = {
     signup,
     login,
 };
+
+
