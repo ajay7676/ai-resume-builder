@@ -12,13 +12,14 @@ import { useNavigate } from "react-router-dom";
 import UploadresumeModal from "./modal/UploadresumeModal";
 import UpdateResumeTitle from './modal/UpdateResumeTitle'
 import DeleteConfirmModal from "./modal/DeleteConfirmModal";
-import { createResume } from "../../../api/resumeApi";
-import { useDispatch } from "react-redux";
-import { addResume } from "../../../features/resume/resumeSlice";
+import { createResume, getAllResumes } from "../../../api/resumeApi";
+import { useDispatch, useSelector } from "react-redux";
+import { addResume, setResumes } from "../../../features/resume/resumeSlice";
 
 const Dashboard = () => {
   const colors = ["#9333ea", "#d977706", "#dc2626", "#0284c7", "#16a34a"];
-  const [allResumes, setAllResumes] = useState([]);
+  const allResumes = useSelector((state) => state?.resume?.resumes)
+  const [isallResumes, setAllResumes] = useState([]);
   const [isCreateResume, setIsCreateResume] = useState(false);
   const [isuploadResume, setIsUploadResume] = useState(false);
   const [title, setTitle] = useState("");
@@ -31,10 +32,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
-  const loadAllResumes = async () => {
-    setAllResumes(dummyResumeData);
-  };
   const handleSubmit = async(e) => {
     e.preventDefault();
     if (title.trim() === "") {
@@ -56,8 +53,25 @@ const Dashboard = () => {
     }
   };
   useEffect(() => {
-    loadAllResumes();
-  }, []);
+      fetchResumes();
+  },[]);
+
+  const fetchResumes = async() => {
+
+    try {
+
+       const data = await getAllResumes();
+       dispatch(setResumes(data.resumes))
+      
+    } catch (error) {
+
+      console.log(error)
+      
+    }
+
+
+    
+  }
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 py-8">

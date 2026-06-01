@@ -1,5 +1,7 @@
 import axiosInstance from "./axiosInstance"
 
+
+// Call Create Resume API
 export const  createResume = async (title) => {
 
     const response =  await axiosInstance.post(
@@ -11,3 +13,12 @@ export const  createResume = async (title) => {
 
 
 }
+
+// Call Get All Resumes API
+
+export const getAllResumes = async () => {
+     const response = await axiosInstance.get("/resume/all");
+     
+     return response.data;
+}
+
