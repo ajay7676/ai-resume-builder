@@ -13,6 +13,9 @@ const resumeSlice = createSlice ({
     name: "resume",
     initialState,
     reducers: {
+        addResume: (state, action) => {
+        state.resumes.unshift(action.payload);
+        },
         setResumes: (state,action) =>{
             state.resumes = action.payload;
         },
@@ -26,6 +29,6 @@ const resumeSlice = createSlice ({
 
 })
 
-export const {setResumes,setLoading,setError} = resumeSlice.actions;
+export const {addResume,setResumes,setLoading,setError} = resumeSlice.actions;
 
 export default resumeSlice.reducer;

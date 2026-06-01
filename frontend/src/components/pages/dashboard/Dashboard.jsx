@@ -13,6 +13,8 @@ import UploadresumeModal from "./modal/UploadresumeModal";
 import UpdateResumeTitle from './modal/UpdateResumeTitle'
 import DeleteConfirmModal from "./modal/DeleteConfirmModal";
 import { createResume } from "../../../api/resumeApi";
+import { useDispatch } from "react-redux";
+import { addResume } from "../../../features/resume/resumeSlice";
 
 const Dashboard = () => {
   const colors = ["#9333ea", "#d977706", "#dc2626", "#0284c7", "#16a34a"];
@@ -26,6 +28,8 @@ const Dashboard = () => {
   const [selectedResumeId, setSelectedResumeId] =useState(null);
   const[openDeleteModal, setOpenDeleteModal]=useState(false);
 
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const loadAllResumes = async () => {
@@ -38,8 +42,10 @@ const Dashboard = () => {
       return;
     }
     try {
-    await createResume(title);
-    console.log(title);
+    const response = await createResume(title);
+     console.log(response)
+    dispatch(addResume(response.resume))
+    // console.log(title);
     setTitle("");
     setError("");
     setIsCreateResume(false);
