@@ -32,6 +32,31 @@ const createResume = async(req,res) =>{
 
 }
 
+
+// Get All Resumes API
+
+const getAllResumes = async(req,res) => {
+
+    try {
+
+        const resumes  = await ResumeModel.find({
+        userId: req.userId,
+    }).sort({updatedAt: -1});
+
+    res.status(200).json({
+        success: true,
+        resumes
+    })
+        
+    } catch (error) {
+        res.status(500).json({
+            message: error.message,
+        })
+        
+    }
+}
+
  module.exports = {
-    createResume
+    createResume,
+    getAllResumes
  }
