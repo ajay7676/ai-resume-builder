@@ -18,7 +18,6 @@ const UpdateResumeTitle = ({isOpen,onClose,resumeId,allResumes,setAllResumes}) =
   },[resumeId,allResumes])
 
   
-   console.log(title)
 
    // Update Resume title
    const handleUpdateResumeTitle = () => {

@@ -1,26 +1,33 @@
-import { Link, useNavigate } from 'react-router-dom';
-import Logo from '../../assets/logo.svg'
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "../../assets/logo.svg";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const user = {name: 'Ajay'}
-   const navigate = useNavigate();
-    const logoutUser = () =>{
-      localStorage.removeItem("resume-token");
-        navigate("/login");
-    }
-  return (
-    <div className='shadow bg-white'>
-        <nav className='flex items-center justify-between max-w-7xl mx-auto px-4 py-3.5 text-slate-800 transition-all'>
-            <Link to="">
-             <img src={Logo} alt='Company Logo' className='w-20 h-auto' />
-            </Link>
-            <div className='flex items-center gap-4 text-sm'>
-              <p>Hi ,{user?.name} </p>
-              <button onClick={logoutUser} className='bg-white hover:bg-slate-50 border border-gray-300 px-7 py-1.5 rounded-full active:scale-95 transition-all'>Logout</button>
-            </div>
-        </nav>
-    </div>
-  )
-}
+  const {user} = useSelector((state) => state.authresume)  ;
+  const navigate = useNavigate();
 
-export default Navbar
+  const logoutUser = () => {
+    localStorage.removeItem("resume-token");
+    navigate("/login");
+  };
+  return (
+    <div className="shadow bg-white">
+      <nav className="flex items-center justify-between max-w-7xl mx-auto px-4 py-3.5 text-slate-800 transition-all">
+        <Link to="">
+          <img src={Logo} alt="Company Logo" className="w-20 h-auto" />
+        </Link>
+        <div className="flex items-center gap-4 text-sm">
+          <p>Hi ,{user?.name} </p>
+          <button
+            onClick={logoutUser}
+            className="bg-white hover:bg-slate-50 border border-gray-300 px-7 py-1.5 rounded-full active:scale-95 transition-all"
+          >
+            Logout
+          </button>
+        </div>
+      </nav>
+    </div>
+  );
+};
+
+export default Navbar;

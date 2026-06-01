@@ -3,7 +3,7 @@ import { FaEnvelope, FaLock, FaUser } from "react-icons/fa6";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setCredentails,setError } from "../../../features/auth/authSlice";
+import { setCredentials,setError } from "../../../features/auth/authSlice";
 
 const Login = () => {
   const query = new URLSearchParams(window.location.search);
@@ -17,6 +17,7 @@ const Login = () => {
   });
 
   const dispatch = useDispatch();
+  const apiUrl = import.meta.env.VITE_API_URL;
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -27,8 +28,8 @@ const Login = () => {
     try {
       const url =
         state === "login"
-          ? "http://localhost:5000/api/auth/login"
-          : "http://localhost:5000/api/auth/signup";
+          ? `${apiUrl}/login`
+          : `${apiUrl}/signup`;
 
       const response = await axios.post(url, formData);
 
@@ -40,7 +41,7 @@ const Login = () => {
       
       // Store form Data in Redux
       dispatch(
-        setCredentails({
+        setCredentials({
           user: response.data.user,
           token: response.data.token,
         }),

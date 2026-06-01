@@ -4,11 +4,13 @@ import Dashboard from "./components/pages/dashboard/Dashboard";
 import ResumeBuilder from "./components/pages/resbuilder/ResumeBuilder";
 import Preview from "./components/pages/preview/Preview";
 import Login from "./components/pages/login/Login";
-import Navbar from "./components/elements/Navbar";
+// import Navbar from "./components/elements/Navbar";
 import Layout from "./components/elements/Layout";
 import ProtectedRoute from "./route/ProtectedRoute";
+import useLoadUser from "./components/hooks/useLoadUser";
 
 const App = () => {
+  useLoadUser();
   return (
     <>
       <Routes>
