@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { getProfile } from "../api/authApi";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "../../features/auth/authSlice";
+import { setCredentials } from "../features/auth/authSlice";
 
  
 

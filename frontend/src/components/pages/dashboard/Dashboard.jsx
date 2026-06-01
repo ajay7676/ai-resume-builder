@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import UploadresumeModal from "./modal/UploadresumeModal";
 import UpdateResumeTitle from './modal/UpdateResumeTitle'
 import DeleteConfirmModal from "./modal/DeleteConfirmModal";
-import { createResume } from "../../api/resumeApi";
+import { createResume } from "../../../api/resumeApi";
 
 const Dashboard = () => {
   const colors = ["#9333ea", "#d977706", "#dc2626", "#0284c7", "#16a34a"];

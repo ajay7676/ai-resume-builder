@@ -7,7 +7,7 @@ import Login from "./components/pages/login/Login";
 // import Navbar from "./components/elements/Navbar";
 import Layout from "./components/elements/Layout";
 import ProtectedRoute from "./route/ProtectedRoute";
-import useLoadUser from "./components/hooks/useLoadUser";
+import useLoadUser from "./hooks/useLoadUser";
 
 const App = () => {
   useLoadUser();
