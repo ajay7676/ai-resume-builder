@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import UploadresumeModal from "./modal/UploadresumeModal";
 import UpdateResumeTitle from './modal/UpdateResumeTitle'
 import DeleteConfirmModal from "./modal/DeleteConfirmModal";
+import { createResume } from "../../api/resumeApi";
 
 const Dashboard = () => {
   const colors = ["#9333ea", "#d977706", "#dc2626", "#0284c7", "#16a34a"];
@@ -30,16 +31,23 @@ const Dashboard = () => {
   const loadAllResumes = async () => {
     setAllResumes(dummyResumeData);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (title.trim() === "") {
       setError("Please enter resume title");
       return;
     }
+    try {
+    await createResume(title);
+    console.log(title);
+    setTitle("");
     setError("");
     setIsCreateResume(false);
-    setTitle("");
     navigate(`/app/builder/res1`);
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
   useEffect(() => {
     loadAllResumes();
