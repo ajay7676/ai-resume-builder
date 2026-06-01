@@ -1,13 +1,14 @@
 const express = require("express");
-const {signup, login, createResume, getProfile} = require("../controllers/authController");
+const {signup, login, getProfile} = require("../controllers/authController");
 const authMiddleware = require("../middleware/authMiddleware");
+const { createResume } = require("../controllers/resumeController");
 
 const router = express.Router();
 
 router.post("/signup" , signup);
 router.post("/login", login);
 router.get("/profile",authMiddleware,getProfile)
-router.post("/create" , authMiddleware,createResume);
+router.post("/resume/create" , authMiddleware,createResume);
 
 
 

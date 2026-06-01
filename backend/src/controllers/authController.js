@@ -131,16 +131,11 @@ const getProfile = async (req,res) =>{
   }
 }
 
-// Create Create Resume  API
-const createResume = async(req,res) =>{
-
-}
 
 module.exports = {
     signup,
     login,
     getProfile,
-  createResume
 }
 
 
