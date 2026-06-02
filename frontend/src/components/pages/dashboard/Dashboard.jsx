@@ -6,7 +6,6 @@ import {
   FaPen,
   FaTrashCan,
 } from "react-icons/fa6";
-import { dummyResumeData } from "../../../assets/assets";
 import CreateresumeModal from "./modal/CreateresumeModal";
 import { useNavigate } from "react-router-dom";
 import UploadresumeModal from "./modal/UploadresumeModal";

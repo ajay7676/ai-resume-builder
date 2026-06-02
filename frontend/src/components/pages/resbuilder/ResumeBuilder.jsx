@@ -1,4 +1,3 @@
-import React from "react";
 import ResumeSidebar from "./ResumeSidebar";
 import ResumePreview from "./ResumePreview";
 import { Link } from "react-router-dom";

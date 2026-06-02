@@ -2,6 +2,7 @@
 const InputField = ({ label,
   icon: Icon,
   placeholder,
+  name,
   value,
   handleChange,
   required = false,}) => {
@@ -17,6 +18,7 @@ const InputField = ({ label,
 
       <input
         type="text"
+        name={name}
         placeholder={placeholder}
         defaultValue={value}
         onChange={handleChange}

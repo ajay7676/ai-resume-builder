@@ -27,7 +27,6 @@ export const getAllResumes = async () => {
 
 export const updatePersonalInfo = async(resumeId, personalInfo) => {
     const {data} = await axiosInstance.put(`/resume/${resumeId}/personal-info` , personalInfo);
-
     return data
 
 

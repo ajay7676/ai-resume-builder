@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     resumes: [],
-    selectedResume: null,
+    selectedCurrentResume: null,
     loaading: false,
     error: null,
 };
@@ -22,6 +22,9 @@ const resumeSlice = createSlice ({
         setLoading: (state , action) => {
             state.loaading = action.payload;
         },
+        setCurrentResume: (state, action) => {
+             state.selectedCurrentResume = action.payload;
+        },
         setError : (state,action) =>{
             state.error = action.payload;
         }
@@ -29,6 +32,6 @@ const resumeSlice = createSlice ({
 
 })
 
-export const {addResume,setResumes,setLoading,setError} = resumeSlice.actions;
+export const {addResume,setResumes,setCurrentResume,setLoading,setError} = resumeSlice.actions;
 
 export default resumeSlice.reducer;
