@@ -1,21 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ImageUploader from "./ImageUploader";
 import InputField from "./InputField";
 import { FaBriefcase, FaEnvelope, FaGlobe, FaLinkedin, FaMapLocation, FaPhone, FaUser } from "react-icons/fa6";
 import { updatePersonalInfo } from "../../../api/resumeApi";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentResume } from "../../../features/resume/resumeSlice";
 
 const PersonalInfoForm = () => {
   const {resumeId} = useParams();
+ const allResumes = useSelector((state) => state?.resume?.resumes);
+  // console.log(allResumes)
+   const currentResume  = allResumes.find((resume) =>  resume._id === resumeId);
+  console.log(currentResume)
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     phone: "",
     location: "",
     profession: "",
-    linkedin: "",
+    linkedIn: "",
     website: "",
   });
 
@@ -47,6 +51,20 @@ const PersonalInfoForm = () => {
     }
       
   }
+
+  useEffect(() => {
+       if(currentResume?.personalInfo){
+        setFormData({
+          fullName: currentResume.personalInfo.fullName || "",
+          email: currentResume.personalInfo.email || "",
+          phone: currentResume.personalInfo.phone || "",
+          location: currentResume.personalInfo.location || "",
+          profession: currentResume.personalInfo.profession || "",
+          linkedIn: currentResume.personalInfo.linkedIn || "",
+          website: currentResume.personalInfo.website || "",
+        })
+       }
+  } , [currentResume])
   return (
     <>
       <div className="space-y-6">

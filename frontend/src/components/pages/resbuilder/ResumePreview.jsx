@@ -5,10 +5,10 @@ const ResumePreview = () => {
 const { resumeId } = useParams();
  const allResumes = useSelector((state) => state?.resume?.resumes);
  
-  console.log(allResumes)
+  // console.log(allResumes)
 
-   const cuurentResume  = allResumes.find((resume) =>  resume._id === resumeId);
- console.log(cuurentResume)
+   const currentResume  = allResumes.find((resume) =>  resume._id === resumeId);
+//  console.log(currentResume)
  return (
     <div className="lg:col-span-7 max-lg:mt-6">
   <div className="relative w-full">
@@ -37,10 +37,10 @@ const { resumeId } = useParams();
              style={{color: "rgb(59, 130, 246)"}}
           >
             {
-            cuurentResume.personalInfo ? cuurentResume.personalInfo.fullName:"Your Name" }
+            currentResume.personalInfo ? currentResume.personalInfo.fullName:"Your Name" }
           </h1>
           {
-            cuurentResume.personalInfo &&  <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+            currentResume.personalInfo &&  <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
             <div className="flex items-center gap-1">
               <span>7654246723</span>
             </div>
