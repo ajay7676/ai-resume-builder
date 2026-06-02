@@ -8,6 +8,9 @@
   button{
     @apply cursor-pointer
   }
+  input::placeholder{
+    @apply text-gray-400
+  }
 }
 
 
