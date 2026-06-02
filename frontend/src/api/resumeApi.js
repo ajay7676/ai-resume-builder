@@ -22,3 +22,14 @@ export const getAllResumes = async () => {
      return response.data;
 }
 
+
+// Update Personal Information 
+
+export const updatePersonalInfo = async(resumeId, personalInfo) => {
+    const {data} = await axiosInstance.put(`/resume/${resumeId}/personal-info` , personalInfo);
+
+    return data
+
+
+}
+

@@ -56,7 +56,37 @@ const getAllResumes = async(req,res) => {
     }
 }
 
+// Create Personal Info API
+
+const updatePersonalInfo = async (req,res) => {
+
+    try {
+
+        const resume = await ResumeModel.findOne({
+            _id: req.params.resumeId,
+            userId : req.userId,
+        });
+
+        if(!resume){
+            return res.status(404).json({message: "Resume not found"});
+        }
+
+        resume.personalInfo = req.body;
+
+        await resume.save();
+
+        res.status(200).json(resume);
+    } catch (error) {
+        res.status(500).json({
+            message : error.message,
+        });
+    }
+
+} 
+
+
  module.exports = {
     createResume,
-    getAllResumes
+    getAllResumes,
+    updatePersonalInfo
  }

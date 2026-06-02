@@ -13,6 +13,16 @@ const resumeSchema  = new mongoose.Schema(
             ref: "User",
             required: true,
          },
+         personalInfo: {
+            fullName: String,
+            email: String,
+            phone: String,
+            location: String,
+            profession: String,
+            linkedIn: String,
+            website: String,
+            summary: String,
+        },
     },
     {
         timestamps: true,
