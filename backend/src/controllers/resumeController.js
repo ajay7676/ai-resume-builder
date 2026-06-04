@@ -32,6 +32,33 @@ const createResume = async(req,res) =>{
 
 }
 
+// Get A Resume API
+ const getResumeById = async (req,res) => {
+     try {
+
+         const resume = await ResumeModel.findOne({
+            _id: req.params.resumeId,
+            userId: req.userId,
+         })
+        // console.log(req.params.resumeId);
+        // console.log(req.userId);
+         if(!resume){
+             return res.status(404).json("Resume was not found")
+         }
+         res.status(200).json({
+            success: true,
+            resume,
+         })
+        
+     } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+        
+     }
+
+ }
+
 
 // Get All Resumes API
 
@@ -87,6 +114,7 @@ const updatePersonalInfo = async (req,res) => {
 
  module.exports = {
     createResume,
+    getResumeById,
     getAllResumes,
     updatePersonalInfo
  }
