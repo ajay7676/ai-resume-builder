@@ -42,3 +42,13 @@ export const updatePersonalInfo = async(resumeId, personalInfo) => {
 
 }
 
+ // Update Personal Summary
+
+  
+ export const updatePersonalSummary = async(resumeId , summaryData) =>{
+      const {data} = axiosInstance.put(`/resume/${resumeId}/summary` , summaryData);
+
+      return data;
+
+ }
+
