@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PersonalInfoForm from "./PersonalInfoForm";
 import ResumeHeader from "./ResumeHeader";
 import ProfessionalSummary from "./ProfessionalSummary";
@@ -8,13 +8,17 @@ import ProjectsForm from './ProjectsForm'
 import SkillsForm from "./SkillsForm";
 
 const ResumeSidebar = () => {
-  const [currentStep, setCurrentStep] = useState(6);
+  const [currentStep, setCurrentStep] = useState(1);
   const nextStep = () => {
     setCurrentStep((prev) => prev + 1);
   };
   const prevStep = () => {
     setCurrentStep((prev) => prev - 1);
   };
+  
+  // useEffect(() => {
+
+  // } , [])
   return (
     <div className="relative lg:col-span-5 rounded-lg overflow-hidden">
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 pt-1">

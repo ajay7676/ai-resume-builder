@@ -28,7 +28,32 @@ const resumeSchema  = new mongoose.Schema(
                 type: String,
                 default: "",
             }
-        }
+        },
+        experiences: [
+            {
+                 company: {
+                    type: String,
+                    default: "",
+                 },
+                 position: {
+                    type: String,
+                    default: "",
+                 },
+                 startDate: {
+                    type: String,
+                    default: "",
+                 },
+                 endDate: {
+                    type: String,
+                    default: "",
+                 },
+                 description: {
+                    type: String,
+                    default: "",
+                 }
+            }
+        ]
+
     },
     {
         timestamps: true,
