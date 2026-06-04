@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     resumes: [],
     selectedCurrentResume: null,
+    currentStep: 1,
     loaading: false,
     error: null,
 };

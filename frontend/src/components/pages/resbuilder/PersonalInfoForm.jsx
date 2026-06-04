@@ -14,6 +14,7 @@ import { getResumeById, updatePersonalInfo } from "../../../api/resumeApi";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentResume } from "../../../features/resume/resumeSlice";
+import ButtonForm from "./ButtonForm";
 
 const PersonalInfoForm = () => {
   const { resumeId } = useParams();
@@ -160,15 +161,8 @@ const PersonalInfoForm = () => {
           placeholder="Enter your personal website"
           required
         />
-        {/* Button */}
-        <div className="mt-8">
-          <button
-            onClick={handleSave}
-            className="rounded-lg border border-green-500 bg-green-100 px-5 py-2 text-sm text-green-700 transition hover:bg-green-200"
-          >
-            Save Changes
-          </button>
-        </div>
+        <ButtonForm handleSave={handleSave}  />
+       
       </div>
     </>
   );

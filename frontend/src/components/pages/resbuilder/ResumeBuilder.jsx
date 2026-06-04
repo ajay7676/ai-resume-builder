@@ -11,7 +11,6 @@ import { setCurrentResume } from "../../../features/resume/resumeSlice";
 
 const ResumeBuilder = () => {
     const {resumeId} = useParams();
-
     const userId = useSelector((state) => state?.authresume?.user?._id);
     const dispatch = useDispatch();
     const fetchResume = async (resumeId) => {
