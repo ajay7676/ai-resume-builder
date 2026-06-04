@@ -111,10 +111,46 @@ const updatePersonalInfo = async (req,res) => {
 
 } 
 
+const updateSummary = async(req,res) => {
+
+    try {
+
+        const {content} = req.body;
+        const resume = await ResumeModel.findOne({
+            _id: req.params.resumeId,
+            userId: req.userId
+        })
+
+        if(!resume){
+            return res.status(404).json({
+                message: "Resume not found",
+            })
+        }
+        resume.summary={
+            content,
+        };
+
+        await resume.save();
+
+        res.status(200).json({
+            success: true,
+            resume
+        })
+    
+    } catch (error) {
+        res.status(500).json({
+            message: error.message,
+        })
+    
+    }
+
+}
+
 
  module.exports = {
     createResume,
     getResumeById,
     getAllResumes,
-    updatePersonalInfo
+    updatePersonalInfo,
+    updateSummary
  }

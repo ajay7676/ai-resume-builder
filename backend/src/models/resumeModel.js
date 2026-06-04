@@ -23,6 +23,12 @@ const resumeSchema  = new mongoose.Schema(
             website: String,
             summary: String,
         },
+        summary: {
+            content: {
+                type: String,
+                default: "",
+            }
+        }
     },
     {
         timestamps: true,
