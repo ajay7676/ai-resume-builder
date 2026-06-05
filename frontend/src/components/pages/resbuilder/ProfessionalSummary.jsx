@@ -9,8 +9,6 @@ const ProfessionalSummary = () => {
   const { resumeId } = useParams();
     const dispatch = useDispatch();
     const currentResume = useSelector((state) => state?.resume?.selectedCurrentResume);
-    console.log(currentResume._id)
-
     const [summary, setSummary] = useState("");
     useEffect(() => {
         if(currentResume?.summary){
@@ -19,15 +17,11 @@ const ProfessionalSummary = () => {
 
     } , [currentResume]);
 
-    console.log(summary)
 
     const handleSave = async () => {
            try {
              const  data =  await updatePersonalSummary(currentResume._id, {content : summary});
-              console.log(data)
-                      console.log("Summary btn was Clicked 11");
-            //  dispatch(updateCurrentResume(data.resume));
-            //  console.log(data);
+             dispatch(updateCurrentResume(data.resume));
              alert("Saved Successfully");
 
             
