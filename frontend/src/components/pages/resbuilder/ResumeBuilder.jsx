@@ -1,5 +1,5 @@
 import ResumeSidebar from "./ResumeSidebar";
-import ResumePreview from "./ResumePreview";
+// import ResumePreview from "./ResumePreview";
 import { Link, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useEffect } from "react";

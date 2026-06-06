@@ -164,7 +164,9 @@ function warning(cond, message) {
 		if (typeof console !== "undefined") console.warn(message);
 		try {
 			throw new Error(message);
-		} catch (e) {}
+		} catch (e) {
+			console.log(e.message)
+		}
 	}
 }
 function createKey$1() {

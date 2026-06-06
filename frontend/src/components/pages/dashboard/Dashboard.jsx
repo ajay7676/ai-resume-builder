@@ -39,9 +39,7 @@ const Dashboard = () => {
     }
     try {
     const response = await createResume(title);
-     console.log(response)
     dispatch(addResume(response.resume))
-    // console.log(title);
     setTitle("");
     setError("");
     setIsCreateResume(false);
@@ -51,10 +49,6 @@ const Dashboard = () => {
       
     }
   };
-  useEffect(() => {
-      fetchResumes();
-  },[]);
-
   const fetchResumes = async() => {
 
     try {
@@ -71,6 +65,9 @@ const Dashboard = () => {
 
     
   }
+  useEffect(() => {
+      fetchResumes();
+  },[]);
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 py-8">

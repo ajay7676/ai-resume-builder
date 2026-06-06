@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import ButtonForm from "./ButtonForm";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { updatePersonalSummary } from "../../../api/resumeApi";
 import { updateCurrentResume } from "../../../features/resume/resumeSlice";
 
 const ProfessionalSummary = () => {
-  const { resumeId } = useParams();
     const dispatch = useDispatch();
     const currentResume = useSelector((state) => state?.resume?.selectedCurrentResume);
     const [summary, setSummary] = useState("");

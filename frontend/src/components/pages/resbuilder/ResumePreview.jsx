@@ -5,10 +5,8 @@ const ResumePreview = () => {
 const { resumeId } = useParams();
  const allResumes = useSelector((state) => state?.resume?.resumes);
  
-  // console.log(allResumes)
 
    const currentResume  = allResumes.find((resume) =>  resume._id === resumeId);
-//  console.log(currentResume)
  return (
     <div className="lg:col-span-7 max-lg:mt-6">
   <div className="relative w-full">

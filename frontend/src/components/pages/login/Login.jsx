@@ -33,7 +33,6 @@ const Login = () => {
 
       const response = await axios.post(url, formData);
 
-      // console.log(response.data);
 
       // Store Token in local Storage
 

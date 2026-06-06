@@ -40,8 +40,6 @@ const createResume = async(req,res) =>{
             _id: req.params.resumeId,
             userId: req.userId,
          })
-        // console.log(req.params.resumeId);
-        // console.log(req.userId);
          if(!resume){
              return res.status(404).json("Resume was not found")
          }
@@ -155,7 +153,6 @@ const updateExperience = async(req,res) =>{
     try {
    
         const {experiences} = req.body;
-        //  console.log(experiences)
         const resume = await ResumeModel.findOne({
             _id: req.params.resumeId,
             userId: req.userId
